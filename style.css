@@ -75,3 +75,18 @@ button.key {
 .op     { background: #007acc; color: #fff; }
 .equal  { background: #00c853; color: #fff; grid-column: span 2; }
 .clear  { background: #d32f2f; color: #fff; grid-column: span 2; }
+/* Funny dialogue text */
+.dialogue {
+  position: absolute;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffeb3b; /* bright yellow for fun */
+  opacity: 0.9;
+  animation: dialogueFloat 3s ease-out forwards;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+@keyframes dialogueFloat {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-80px); opacity: 0; }
+}

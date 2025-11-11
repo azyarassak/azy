@@ -33,12 +33,15 @@ document.querySelectorAll('.key').forEach(btn => {
       if (result !== null && result !== undefined) {
         display.value = result;
         expression = String(result);
+         showDialogue();
       } else {
         display.value = 'Error';
         expression = '';
       }
       return;
     }
+    
+
 
     expression += val;
     display.value = expression;
@@ -77,3 +80,29 @@ function spawnEmoji() {
 
 // spawn emojis continuously
 setInterval(spawnEmoji, 1000);
+// Funny dialogues
+function showDialogue() {
+  const dialogues = [
+    "Math wizard unlocked 🧙‍♂️",
+    "That’s some spicy calculation 🌶️",
+    "Numbers fear you 😱",
+    "Einstein would be proud 💡",
+    "Boom! Result dropped 🎤",
+    "Calculator says: chill bro 😎",
+    "You cracked the code 🔓",
+    "Result served hot 🍕"
+  ];
+
+  const text = document.createElement('div');
+  text.className = 'dialogue';
+  text.textContent = dialogues[Math.floor(Math.random() * dialogues.length)];
+
+  // random horizontal position
+  text.style.left = Math.random() * window.innerWidth + 'px';
+  text.style.top = (window.innerHeight / 2) + 'px';
+
+  document.body.appendChild(text);
+
+  // remove after animation
+  setTimeout(() => text.remove(), 3000);
+}
