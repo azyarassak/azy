@@ -14,3 +14,13 @@ function calculate() {
     document.getElementById('display').value = 'Error';
   }
 }
+const toggleBtn = document.getElementById('theme-toggle');
+const calculator = document.querySelector('.calculator');
+const body = document.body;
+
+toggleBtn.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  body.classList.toggle('light');
+  calculator.classList.toggle('dark');
+  calculator.classList.toggle('light');
+});
