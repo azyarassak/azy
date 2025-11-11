@@ -1,8 +1,8 @@
 // Elements
 const display = document.getElementById('display');
 const calc = document.getElementById('calc');
-const emojiLayer = document.getElementById('emoji-layer');
 const themeToggle = document.getElementById('theme-toggle');
+const bgLayer = document.getElementById('background-emojis');
 
 // State
 let expression = '';
@@ -33,7 +33,6 @@ document.querySelectorAll('.key').forEach(btn => {
       if (result !== null && result !== undefined) {
         display.value = result;
         expression = String(result);
-        burstEmojis(); // trigger celebration
       } else {
         display.value = 'Error';
         expression = '';
@@ -41,7 +40,6 @@ document.querySelectorAll('.key').forEach(btn => {
       return;
     }
 
-    // Append values
     expression += val;
     display.value = expression;
   });
@@ -59,24 +57,23 @@ function safeEval(expr) {
   }
 }
 
-// Emoji burst
-function burstEmojis() {
-  const emojis = ['🎉', '✨', '🔥', '💯', '😎', '🚀', '🎈', '⭐'];
-  const count = 8;
-  const layerWidth = emojiLayer.clientWidth || calc.clientWidth;
+// Floating background emojis
+function spawnEmoji() {
+  const emojis = ['🎉','✨','🔥','💯','😎','🚀','🎈','⭐','🌸','🍀','🌙'];
+  const emoji = document.createElement('span');
+  emoji.className = 'bg-emoji';
+  emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-  for (let i = 0; i < count; i++) {
-    const span = document.createElement('span');
-    span.className = 'emoji';
-    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  // random horizontal position
+  emoji.style.left = Math.random() * window.innerWidth + 'px';
+  // random animation duration
+  const duration = 5 + Math.random() * 5;
+  emoji.style.animationDuration = duration + 's';
 
-    const startX = Math.max(8, Math.min(layerWidth - 32, layerWidth * 0.65 + Math.random() * (layerWidth * 0.3)));
-    const dx = (Math.random() - 0.4) * 40;
-    span.style.left = `${startX}px`;
-    span.style.setProperty('--dx', `${dx}px`);
-    span.style.top = `20px`;
-
-    emojiLayer.appendChild(span);
-    span.addEventListener('animationend', () => span.remove());
-  }
+  bgLayer.appendChild(emoji);
+  // remove after animation
+  setTimeout(() => emoji.remove(), duration * 1000);
 }
+
+// spawn emojis continuously
+setInterval(spawnEmoji, 1000);

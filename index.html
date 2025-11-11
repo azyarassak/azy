@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculator with Emoji Burst</title>
+  <title>Calculator with Floating Emojis</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
   <button id="theme-toggle">Toggle theme</button>
 
+  <!-- Background emoji layer -->
+  <div id="background-emojis"></div>
+
   <div class="calculator dark" id="calc">
     <input type="text" id="display" disabled />
-    <div id="emoji-layer"></div>
-
     <div class="buttons">
       <button class="key clear" data-action="clear">C</button>
       <button class="key op" data-value="/">/</button>
